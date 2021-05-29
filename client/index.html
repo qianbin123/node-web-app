@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">ajax请求</button>
+  <div id='container'></div>
+  <script>
+    let btn = document.getElementById("btn");
+    let container = document.getElementById("container");
+
+    // 交互主体
+    btn.onclick = function (e) {
+      function reqListener(e) {
+        console.log('发请求了', e);
+        container.innerHTML = e.srcElement.responseText
+      }
+
+      var oReq = new XMLHttpRequest();
+      oReq.open("GET", "http://127.0.0.1:8081/api/start");
+      oReq.addEventListener("load", reqListener);
+      oReq.send();
+    }
+  </script>
+</body>
+
+</html>
